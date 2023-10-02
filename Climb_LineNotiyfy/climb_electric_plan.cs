@@ -26,8 +26,12 @@ namespace Climb_LineNotiyfy
             var time = "";
             var area = "";
             int j = -1;
+            var week_date = DateTime.Now.AddDays(7);
+            //Console.WriteLine(timeElements.Length);
+            //Console.WriteLine(week_date); 
+            //Console.WriteLine(areaElements[305].TextContent);
             // 遍歷每個 tr 元素，並抽取 id、rank 和 title 屬性
-            for (int i = 0; i < timeElements.Length; i++)
+            for (int i = 0; i < areaElements.Length; i++)
             {
                 if (timeElements[i].TextContent == "停電時段")
                 {
@@ -49,10 +53,19 @@ namespace Climb_LineNotiyfy
                     culture.DateTimeFormat.Calendar = new TaiwanCalendar();
                     var Transfer_date = DateTime.Parse(date, culture);
                     var full_ymd = Transfer_date.ToString("yyyy-MM-dd");
-                    SQL_SIDU.Insert_SQL(full_ymd, start_time, end_time, area);
-
+                    int result = DateTime.Compare(Transfer_date, week_date);
+                 Console.WriteLine(Transfer_date.ToString(), week_date, result);
+                    if (result == 1)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        SQL_SIDU.Insert_SQL(full_ymd, start_time, end_time, area);
+                    }                    
                 }
             }
+            
         }
     }
 }

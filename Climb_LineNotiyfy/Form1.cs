@@ -23,7 +23,7 @@ namespace Climb_LineNotiyfy
          public Form1()
         {
             var date = DateTime.Now.ToString("dd");
-            if (date == "01")
+            if (date == "02")
             {
                 Task climb = task_runAsync();
             }
