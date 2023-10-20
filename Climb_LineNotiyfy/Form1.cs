@@ -22,24 +22,36 @@ namespace Climb_LineNotiyfy
         LineNotify lineNotify = new LineNotify();
          public Form1()
         {
-            var date = DateTime.Now.ToString("dd");
-            if (date == "02")
-            {
+            //var date = DateTime.Now.ToString("dd");
+            //if (date == "02")
+            //{
                 Task climb = task_runAsync();
-            }
-            else
-            {
-                lineNotify.Line_Notify();//已抓取直接查詢資料庫
-            }
+            //}
+            //else
+            //{
+                //lineNotify.Line_Notify();//已抓取直接查詢資料庫
+            //}
 
 
             InitializeComponent();
         }
         private async Task task_runAsync()
         {
-            await Task.Run(() => climb.Main_test2Async());
-            label1.Text = "已抓取完成!!";
-            lineNotify.Line_Notify();//等待抓取完查詢資料庫
+            try
+            {
+                await Task.Run(() => climb.Main_test2Async());
+                label1.Text = "已抓取完成!!";
+                lineNotify.Line_Notify();//等待抓取完查詢資料庫
+                System.Environment.Exit(0);//結束程式並關閉
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Error",e);
+                System.Environment.Exit(0);//結束程式並關閉
+            }
+            
+
+
         }
 
     }

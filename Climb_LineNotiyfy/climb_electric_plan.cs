@@ -15,7 +15,7 @@ namespace Climb_LineNotiyfy
         {
             var context = BrowsingContext.New(Configuration.Default.WithDefaultLoader());
             // 目標連結:
-            string url = "https://branch.taipower.com.tw/d103/xcnotice?xsmsid=0M242581312675626779";
+            string url = "https://branch.taipower.com.tw/d110/xcnotice?xsmsid=0M242581319136855888";
             // 取得目標網頁的 HTML 內容
             var document = await context.OpenAsync(url);
             // 選擇所有包含屬性的元素
